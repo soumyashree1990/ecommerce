@@ -1,17 +1,17 @@
 package com.ecommerce.demo.validator;
 
 import com.ecommerce.demo.model.User;
-import com.ecommerce.demo.model.UserService;
+import com.ecommerce.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
+        import org.springframework.stereotype.Component;
+        import org.springframework.validation.Errors;
+        import org.springframework.validation.ValidationUtils;
+        import org.springframework.validation.Validator;
 
 @Component
 public class UserValidator implements Validator {
     @Autowired
-    public UserService userService;
+    private UserService userService;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -26,7 +26,7 @@ public class UserValidator implements Validator {
         if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
         }
-        if (userService.findByUsername(user.getUsername())) {
+        if (userService.findByUsername(user.getUsername()) != null) {
             errors.rejectValue("username", "Duplicate.userForm.username");
         }
 
