@@ -2,14 +2,15 @@
     'use strict';
 
     angular
-        .module('User')
-        .controller('UserController', UserController);
+        .module('app')
+        .controller('LoginController', LoginController);
 
     LoginController.$inject = ['$location', 'AuthenticationService', 'FlashService'];
     function LoginController($location, AuthenticationService, FlashService) {
         var vm = this;
 
         vm.login = login;
+        vm.register = register;
 
         (function initController() {
             // reset login status
@@ -26,7 +27,10 @@
                     FlashService.Error(response.message);
                     vm.dataLoading = false;
                 }
-            });
+            }
+            function register(){
+                $location.path('/registerView');
+            }
         };
     }
 
