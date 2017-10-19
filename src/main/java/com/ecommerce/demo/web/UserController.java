@@ -5,6 +5,8 @@ import com.ecommerce.demo.service.SecurityService;
 import com.ecommerce.demo.service.UserService;
 import com.ecommerce.demo.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @Controller
 public class UserController {
     @Autowired
